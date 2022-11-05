@@ -1,0 +1,72 @@
+.form {
+  position: relative;
+}
+
+.control {
+  margin-bottom: 0.5rem;
+}
+
+.controlRadio {
+  display: flex;
+
+  align-items: flex-start;
+}
+
+.controlRadio input {
+  width: 5% !important;
+}
+
+.controlRadio label {
+  width: auto !important;
+  font-weight: normal !important;
+}
+
+.control label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.control input,
+.control textarea {
+  font: inherit;
+  padding: 0.35rem;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  border: 1px solid #c1d1d1;
+  display: block;
+  width: 100%;
+  font-size: 1.25rem;
+}
+
+.control input:focus,
+.control textarea:focus {
+  background-color: #cbf8f8;
+  outline-color: teal;
+}
+
+.newTask {
+  border-bottom: 3px solid #b2d4d4;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: teal;
+}
+
+.errorText {
+  color: #aa0b20;
+  font-size: small;
+}
+
+button:disabled,
+button:disabled:hover,
+button:disabled:active {
+  cursor: not-allowed;
+  text-decoration: none;
+  background-color: teal;
+  color: white;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid teal;
+}

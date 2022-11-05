@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import { Redirect, Route, Switch } from "react-router-dom";
+import AllTasks from "./pages/AllTasks";
+import AddTask from "./pages/AddTask";
+import Layout from "./components/layout/Layout";
+import { useSelector } from "react-redux";
+import TaskUpdate from "./components/tasks/TaskUpdate";
 
 function App() {
+  const { isShow } = useSelector((state) => state.show);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {isShow && <TaskUpdate />}
+      <Layout>
+        <Switch>
+          <Route path="/" exact>
+            <Redirect to="/tasks" />
+          </Route>
+          <Route path="/tasks">
+            <AllTasks />
+          </Route>
+          <Route path="/add-task">
+            <AddTask />
+          </Route>
+          <Route ptah="*">
+            <h1>NotFound</h1>
+          </Route>
+        </Switch>
+      </Layout>
+    </>
   );
 }
 
