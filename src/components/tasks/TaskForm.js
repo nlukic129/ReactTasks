@@ -8,6 +8,7 @@ const TaskForm = (props) => {
   let isFormValid = false;
   const [radioValude, setRadioValue] = useState("");
   const [redioError, setRadioError] = useState(false);
+  const [isUpdateError, setIsUpdateError] = useState(false);
 
   const {
     inputValue: inputNameValue,
@@ -46,15 +47,7 @@ const TaskForm = (props) => {
   if (props.title === "Add Task") {
     isFormValid = isValidName && isValidDescription && isValidDate;
   } else {
-    if (inputNameValue) {
-      isFormValid = isValidName;
-    }
-    if (inputDateValue) {
-      isFormValid = isValidDate;
-    }
-    if (inputDescriptionValue) {
-      isFormValid = isValidDescription;
-    }
+    isFormValid = true;
   }
 
   const changeRadioHandler = (event) => {
@@ -79,6 +72,16 @@ const TaskForm = (props) => {
 
   const onUpdateTaskHandler = (event) => {
     event.preventDefault();
+
+    if (
+      (!inputNameValue || !isValidName) &&
+      (!inputDateValue || !isValidDate) &&
+      (!inputDescriptionValue || !isValidDescription) &&
+      !radioValude
+    ) {
+      setIsUpdateError(true);
+      return;
+    }
 
     props.onChangeTask({
       name: inputNameValue,
@@ -181,6 +184,9 @@ const TaskForm = (props) => {
       </div>
       {redioError && (
         <p className={classes.errorText}>Priority is a required parameter.</p>
+      )}
+      {isUpdateError && (
+        <p className={classes.errorText}>One field must be entered.</p>
       )}
       <button
         className={isFormValid ? "btn" : classes.disabled}
