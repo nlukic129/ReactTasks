@@ -4,6 +4,8 @@ import classes from "./TaskItem.module.css";
 
 const TaskItem = (props) => {
   const dispatch = useDispatch();
+  let date = props.deadline.split("-");
+  date = `${date[2]}.${date[1]}.${date[0]}.`;
 
   const openModalHandler = () => {
     dispatch(showUpdateActions.show(props.id));
@@ -25,7 +27,7 @@ const TaskItem = (props) => {
           <figcaption>Name</figcaption>
         </figure>
         <figure>
-          <blockquote>{props.deadline}</blockquote>
+          <blockquote>{date}</blockquote>
           <figcaption>Deadline date</figcaption>
         </figure>
         <figure>
